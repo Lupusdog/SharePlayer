@@ -5,20 +5,17 @@ import { useEffect } from "react";
 
 export const Aside = memo ((props) => {
 
-  const [deltaTime, setTime] = useState(0);
+  var deltaTime = 0;
   const [Comment, setComment] = useState("");
   const [Chat, setChat] = useState([]);
 
   useEffect(() => {
-    fetch("/chat").then(res => res.json()).then(data => setChat(data.chat))
-  })
-
-  setInterval((args) => {
-    if(deltaTime === 500){
-      fetch("/chat").then(res => res.json()).then(data => setChat(data.chat))
-      setTime(0);
-    }
-  },1)
+    fetch("/chat").then(res => res.json()).then(data => setChat(data.chat));
+    setInterval(() => {
+      console.log("loaded!");
+      fetch("/chat").then(res => res.json()).then(data => setChat(data.chat));
+    }, 10000);
+  }, []);
 
   return(
     <Box  w="25%" h="450px" padding="50px">
@@ -37,7 +34,7 @@ export const Aside = memo ((props) => {
                 comment: Comment
               })
           }).then((res) => res.json()).then((data) => setChat(data.chat))
-          setTime(0);
+          deltaTime = 0;
         }}>送信</Button>
     </Box>
   )
