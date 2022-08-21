@@ -9,44 +9,21 @@ export const Main = memo(() => {
 
     const [Url, setUrl] = useState("");
     const [Time, setTime] = useState(0);
+    const [ref,setRef] = useState(React.createRef())
+
+    
+
     //const [Post, setPost] = useState({});
 
-    const stateRef = useRef(true);
-
-    /*const ref = player => {
-        this.player = player
-      }
-    */
-    
-    
-
-    /*useEffect(() =>{
-        if(stateRef.current){
-            stateRef.current = false;
-            return;
-        }
-
-        fetch('/share', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              url: Url,
-              time: Time
-            })
-          }).then( (res) =>{
-            console.log("送信");
-          }
-        )},[Time])*/
-
+        
         const setGet = () => {fetch("/share").then((res) => res.json()).then((data) => {
             setUrl(data.url);
             setTime(data.time);
-            this.player.seekTo(parseFloat(Time));
+            console.log(Time)
+            console.log(ref.current);
+            ref.current.seekTo(Time);
             }
         )};
-
 
     return(
         <Flex>
@@ -58,7 +35,7 @@ export const Main = memo(() => {
             } />
             <Center>
                 <Box>
-                    <ReactPlayer url={Url}  controls={true} onProgress={(state) => {
+                    <ReactPlayer url={Url}  controls={true} playing={true} ref={ref} onProgress={(state) => {
                         console.log("Progress");
                         setTime(state.playedSeconds);
                     }} />
