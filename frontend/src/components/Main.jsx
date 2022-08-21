@@ -11,9 +11,19 @@ export const Main = memo(() => {
     const [Time, setTime] = useState(0);
     const [ref,setRef] = useState(React.createRef())
 
+    let firstNotExe = useRef(true);
+
     
 
     //const [Post, setPost] = useState({});
+    useEffect(() => {
+        if(firstNotExe){
+            firstNotExe = false;
+            
+
+        }
+        ref.current.seekTo(Time);
+    },[Time]);
 
         
         const setGet = () => {fetch("/share").then((res) => res.json()).then((data) => {
