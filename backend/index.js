@@ -29,16 +29,18 @@ app.use(express.static(path.join(__dirname,"../frontend/build")));
 
 
 let url = "";
+let time = 0;
 let chat = [];
 
 
 app.get("/share",(req,res) => {
-    res.json({url: url});
+    res.json({url: url, time: time});
 });
 
 app.post("/share",(req,res) => {
     url = req.body.url;
-    console.log(req.body.url);
+    time = req.body.time;
+    console.log(req.body.time);
 });
 
 app.post("/user",(req,res) => {

@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export const Aside = memo ((props) => {
 
-  var deltaTime = 0;
+  
   const [Comment, setComment] = useState("");
   const [Chat, setChat] = useState([]);
 
@@ -34,7 +34,6 @@ export const Aside = memo ((props) => {
                 comment: Comment
               })
           }).then((res) => res.json()).then((data) => setChat(data.chat))
-          deltaTime = 0;
         }}>送信</Button>
     </Box>
   )
