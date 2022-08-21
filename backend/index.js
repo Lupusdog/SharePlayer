@@ -40,7 +40,7 @@ app.get("/share",(req,res) => {
 app.post("/share",(req,res) => {
     url = req.body.url;
     time = req.body.time;
-    console.log(req.body.time);
+    console.log("success")
 });
 
 app.post("/user",(req,res) => {
