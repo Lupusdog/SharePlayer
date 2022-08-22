@@ -3,7 +3,6 @@ import { memo, useState } from "react"
 
 export const Header = memo (() => {
 
-    //const [Id,setId] = useState("undefined");
     const [Name, setName] = useState("No Name");
 
     return (

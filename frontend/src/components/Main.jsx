@@ -1,5 +1,5 @@
 import {Box,Input,Center,Flex,Button} from "@chakra-ui/react"
-import {useRef,useState, memo,useEffect} from "react"
+import {useState, memo} from "react"
 import React from "react"
 import ReactPlayer from "react-player";
 import { Aside } from "./Aside";
@@ -9,7 +9,7 @@ export const Main = memo(() => {
 
     const [Url, setUrl] = useState("");
     const [Time, setTime] = useState(0);
-    //const [shareTime, setShareTime] = useState(0);
+    //通常の定数で保管するとPlayerの挙動に問題が出るため、useStateを使用。
     const [ref,setRef] = useState(React.createRef())
 
         
@@ -22,7 +22,7 @@ export const Main = memo(() => {
 
     return(
         <Flex>
-        <Box w="75%" h="450px" >
+        <Box w="75%" h="550px" >
             <Input placeholder="再生したい動画のurlを貼り付けてください" onChange={
                 (event) => {
                     setUrl(event.target.value);
@@ -30,7 +30,7 @@ export const Main = memo(() => {
             } />
             <Center>
                 <Box>
-                    <ReactPlayer url={Url}  controls={true} playing={true} ref={ref} onProgress={(state) => {
+                    <ReactPlayer  height={450} url={Url}  controls={true} playing={true} ref={ref} onProgress={(state) => {
                         console.log("Progress");
                         setTime(state.playedSeconds);
                     }} />

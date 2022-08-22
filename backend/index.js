@@ -4,24 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const port = process.env.PORT || 3001;
-// const session = require("express-session");
-/*const fs = require("fs");
-const https = require("https");
-const server = https.createServer({
-    key: fs.readFileSync('./privatekey.pem'),
-    cert: fs.readFileSync('./cert.pem'),
-}, app);*/
 
-/*app.set("trust proxy", 1);
-
-var session_opt = {
-    secret: "Love saves the world",
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
-};
-
-app.use(session(session_opt));*/
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());

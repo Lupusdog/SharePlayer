@@ -4,7 +4,6 @@ import { memo,useState } from "react"
 import { useEffect } from "react";
 
 export const Aside = memo ((props) => {
-
   
   const [Comment, setComment] = useState("");
   const [Chat, setChat] = useState([]);
@@ -18,7 +17,7 @@ export const Aside = memo ((props) => {
   }, []);
 
   return(
-    <Box  w="25%" h="450px" padding="50px">
+    <Box  w="25%" h="550px" padding="50px">
       <Text>Chat</Text>
         <MakeList chat={Chat} />
         <Input placeholder="コメントを入力" onChange={(event) => {
