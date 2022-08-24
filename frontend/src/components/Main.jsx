@@ -13,7 +13,7 @@ export const Main = memo(() => {
     const [ref,setRef] = useState(React.createRef())
 
         
-        const setGet = () => {fetch("/share").then((res) => res.json()).then((data) => {
+    const setGet = () => {fetch("/share").then((res) => res.json()).then((data) => {
             console.log(data.time);
             setUrl(data.url);
             ref.current.seekTo(data.time);
@@ -22,39 +22,39 @@ export const Main = memo(() => {
 
     return(
         <Flex>
-        <Box w="75%" h="550px" >
-            <Input placeholder="再生したい動画のurlを貼り付けてください" onChange={
-                (event) => {
-                    setUrl(event.target.value);
-                }
-            } />
-            <Center>
-                <Box>
-                    <ReactPlayer  height={450} url={Url}  controls={true} playing={true} ref={ref} onProgress={(state) => {
-                        console.log("Progress");
-                        setTime(state.playedSeconds);
-                    }} />
-                    <Button onClick={(event) => {
-                        fetch('/share', {
-                            method: 'POST',
-                            headers: {
-                              'Content-Type': 'application/json'
-                            },
-                            body: JSON.stringify({
-                              url: Url,
-                              time: Time
-                            })
-                          }).then( (res) =>{
-                            console.log("送信");
-                          }
-                        )}
+            <Box w="75%" h="550px" >
+                <Input placeholder="再生したい動画のurlを貼り付けてください" onChange={
+                    (event) => {
+                        setUrl(event.target.value);
+                    }
+                } />
+                <Center>
+                    <Box>
+                        <ReactPlayer  height={450} url={Url}  controls={true} playing={true} ref={ref} onProgress={(state) => {
+                            console.log("Progress");
+                            setTime(state.playedSeconds);
+                        }} />
+                        <Button onClick={(event) => {
+                            fetch('/share', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    url: Url,
+                                    time: Time
+                                })
+                            }).then( (res) =>{
+                                console.log("送信");
+                                }
+                            )}
                         }>動画の共有POST</Button>
-                    <Button onClick={(event) => {
-                        setGet();
-                    }}>動画の共有GET</Button>
-                </Box>
-            </Center>
-        </Box>
+                        <Button onClick={(event) => {
+                            setGet();
+                        }}>動画の共有GET</Button>
+                    </Box>
+                </Center>
+            </Box>
         <Aside />
         </Flex>
     );
